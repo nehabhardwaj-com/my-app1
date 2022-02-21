@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
+  const [text, setText] = useState("");   
+  const [wordCount, setwordCount] = useState(0);
+  const [character, setcharacter] = useState(0);   
+  const [copiedText, setcopiedText] = useState("");
+  const [count, setCount] = useState(0);  
 
   const handleUpClick = ()=>{
     let newText = text.toUpperCase();
@@ -28,10 +33,19 @@ export default function TextForm(props) {
           }
     const handleCopyClick = ()=>{
           let newText = document.getElementById('mybox');
-          newText.select();
-          navigator.clipboard.writeText(newText.value)
-          setcopiedText(newText);
-          setText(newText);
+            newText.select();
+          // setcopiedText(newText);
+          // setText(newText);
+          var clipboard = navigator.clipboard;
+          if (clipboard === undefined) {
+            console.log('clipboard is undefined');
+        } else {
+                clipboard.writeText('stuff to write').then(function() {
+                console.log('Copied to clipboard successfully!');
+            }, function() {
+                console.error('Unable to write to clipboard. :-(');
+            });
+        }
           }
     const handlecountClick = ()=>{
             let newText =text.split("d").length;
@@ -41,6 +55,11 @@ export default function TextForm(props) {
     const handlePasteClick = ()=>{
               setText(copiedText);
             }
+    const handleremoveXtraClick = ()=>{
+           console.log("remove Xtra spaces");
+           let newText = text.split(/[ ]+/);
+           setText(newText.join(" "))
+    }
   
     const handleOnChange = (event)=>{
       console.log("onchange");
@@ -48,11 +67,7 @@ export default function TextForm(props) {
       setcharacter(text.length)
       setText(event.target.value)
       }
-  const [text, setText] = useState("");   
-  const [wordCount, setwordCount] = useState(0);
-  const [character, setcharacter] = useState(0);   
-  const [copiedText, setcopiedText] = useState("");
-  const [count, setCount] = useState(0);   
+ 
   return (
     <><div>
        <div className="mb-3">
@@ -66,6 +81,7 @@ export default function TextForm(props) {
       <button className="btn btn-primary mx-3" onClick = {handleCopyClick} >Copy</button>
       <button className="btn btn-primary mx-3" onClick = {handlePasteClick} >Paste</button>
       <button className="btn btn-primary mx-3" onClick = {handlecountClick} >Count</button>
+      <button className="btn btn-primary mx-3" onClick = {handleremoveXtraClick} >Remove Xtra Spaces</button>
     </div>
     <div className="container my-3">
       <h2>Your text summary</h2>
