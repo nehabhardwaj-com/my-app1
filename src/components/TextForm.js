@@ -27,7 +27,9 @@ export default function TextForm(props) {
           setText(str2);
           }
     const handleCopyClick = ()=>{
-          let newText = text;
+          let newText = document.getElementById('mybox');
+          newText.select();
+          navigator.clipboard.writeText(newText.value)
           setcopiedText(newText);
           setText(newText);
           }
