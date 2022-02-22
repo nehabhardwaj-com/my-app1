@@ -4,8 +4,8 @@ export default function TextForm(props) {
   const [text, setText] = useState("");   
   const [wordCount, setwordCount] = useState(0);
   const [character, setcharacter] = useState(0);   
-  const [copiedText, setcopiedText] = useState("");
-  const [count, setCount] = useState(0);  
+  // const [copiedText, setcopiedText] = useState("");
+  // const [count, setCount] = useState(0);  
 
   const handleUpClick = ()=>{
     let newText = text.toUpperCase();
@@ -15,13 +15,16 @@ export default function TextForm(props) {
       let newText = text.toLowerCase();
       setText(newText)
       }
+
     const handleClearClick = ()=>{       
         setwordCount(0);
         setcharacter(0);
-        setCount(0);
+        // setCount(0);        
         let newText = " ";
         setText(newText);
+        props.showAlert("Text is cleared!!", "success")
         }
+
         const handleFirstClick = ()=>{       
          
           let arr = text.split(". ");
@@ -30,8 +33,10 @@ export default function TextForm(props) {
         }
         const str2 = arr.join(". ");
           setText(str2);
+          props.showAlert("First letter is capitalized now!!", "success")
           }
-    const handleCopyClick = ()=>{
+
+        const handleCopyClick = ()=>{
           let newText = document.getElementById('mybox');
             newText.select();
           // setcopiedText(newText);
@@ -41,16 +46,17 @@ export default function TextForm(props) {
             console.log('clipboard is undefined');
         } else {
                 clipboard.writeText(newText.value)
+                props.showAlert("Text is copied to clipboard", "success")
         }
-          }
-    const handlecountClick = ()=>{
-            let newText =text.split("d").length;
-            setCount(newText);
+      }
+    // const handlecountClick = ()=>{
+    //         let newText =text.split("d").length;
+    //         setCount(newText);
             // setText(newText);
-            }
-    const handlePasteClick = ()=>{
-              setText(copiedText);
-            }
+            // }
+    // const handlePasteClick = ()=>{
+    //           setText(copiedText);
+    //         }
     const handleremoveXtraClick = ()=>{
            console.log("remove Xtra spaces");
            let newText = text.split(/[ ]+/);
@@ -80,7 +86,7 @@ export default function TextForm(props) {
       <button className="btn btn-primary mx-3" onClick = {handleremoveXtraClick} >Remove Xtra Spaces</button>
     </div>
     <div className="container my-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
-      <h2>Your text summary</h2>
+      <h2>Your Text Summary</h2>
       <p>
         {wordCount} words and {character} characters
       </p>
