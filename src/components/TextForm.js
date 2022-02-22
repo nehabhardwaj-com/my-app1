@@ -66,29 +66,29 @@ export default function TextForm(props) {
  
   return (
     <><div>
-       <div className="mb-3">
+       <div className="mb-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
          <h1>{props.heading}</h1>
-         <textarea  className="form-control" onChange={handleOnChange} value={text} id="mybox" rows="8"/>
+         <textarea  className="form-control" onChange={handleOnChange} style={{backgroundColor : props.mode === 'light' ?'white':'grey',color: props.mode === 'light' ?'#042743':'white',}} value={text} id="mybox" rows="8"/>
        </div>
       <button className="btn btn-primary" onClick = {handleUpClick} >Convert to Uppercase</button>
       <button className="btn btn-primary mx-3" onClick = {handlelowerClick} >Convert to Lowercase</button>
       <button className="btn btn-primary mx-3" onClick = {handleFirstClick} >First Letter Uppercase</button>
       <button className="btn btn-primary mx-3" onClick = {handleClearClick} >Clear Text</button>
       <button className="btn btn-primary mx-3" onClick = {handleCopyClick} >Copy</button>
-      <button className="btn btn-primary mx-3" onClick = {handlePasteClick} >Paste</button>
-      <button className="btn btn-primary mx-3" onClick = {handlecountClick} >Count</button>
+      {/* <button className="btn btn-primary mx-3" onClick = {handlePasteClick} >Paste</button> */}
+      {/* <button className="btn btn-primary mx-3" onClick = {handlecountClick} >Count</button> */}
       <button className="btn btn-primary mx-3" onClick = {handleremoveXtraClick} >Remove Xtra Spaces</button>
     </div>
-    <div className="container my-3">
+    <div className="container my-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
       <h2>Your text summary</h2>
       <p>
         {wordCount} words and {character} characters
       </p>
       <p>{0.008 * wordCount} Minutes to Read</p>
     </div>
-    <div className="container my-3">
+    <div className="container my-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
       <h2>Preview</h2>
-      <p>{text}{count}</p>
+      <p>{text.length>0?text:"Enter something in the above textarea to see the preview"}</p>
     </div>
     </>
 
