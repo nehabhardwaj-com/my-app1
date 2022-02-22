@@ -64,26 +64,26 @@ export default function TextForm(props) {
     }
   
     const handleOnChange = (event)=>{
-      console.log("onchange");
+      // console.log("onchange");
       setwordCount(text.split(" ").length)
       setcharacter(text.length)
       setText(event.target.value)
       }
- 
+ console.log(props.button,"==")
   return (
     <><div>
        <div className="mb-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
          <h1>{props.heading}</h1>
          <textarea  className="form-control" onChange={handleOnChange} style={{backgroundColor : props.mode === 'light' ?'white':'grey',color: props.mode === 'light' ?'#042743':'white',}} value={text} id="mybox" rows="8"/>
        </div>
-      <button className="btn btn-primary" onClick = {handleUpClick} >Convert to Uppercase</button>
-      <button className="btn btn-primary mx-3" onClick = {handlelowerClick} >Convert to Lowercase</button>
-      <button className="btn btn-primary mx-3" onClick = {handleFirstClick} >First Letter Uppercase</button>
-      <button className="btn btn-primary mx-3" onClick = {handleClearClick} >Clear Text</button>
-      <button className="btn btn-primary mx-3" onClick = {handleCopyClick} >Copy</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handleUpClick} >Convert to Uppercase</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handlelowerClick} >Convert to Lowercase</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handleFirstClick} >First Letter Uppercase</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handleremoveXtraClick} >Remove Xtra Spaces</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handleClearClick} >Clear Text</button>
+      <button className={`btn btn-${props.button} mx-1`} onClick = {handleCopyClick} >Copy</button>
       {/* <button className="btn btn-primary mx-3" onClick = {handlePasteClick} >Paste</button> */}
       {/* <button className="btn btn-primary mx-3" onClick = {handlecountClick} >Count</button> */}
-      <button className="btn btn-primary mx-3" onClick = {handleremoveXtraClick} >Remove Xtra Spaces</button>
     </div>
     <div className="container my-3" style={{color : props.mode === 'light' ?'#042743':'white'}}>
       <h2>Your Text Summary</h2>
