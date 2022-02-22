@@ -40,11 +40,7 @@ export default function TextForm(props) {
           if (clipboard === undefined) {
             console.log('clipboard is undefined');
         } else {
-                clipboard.writeText('stuff to write').then(function() {
-                console.log('Copied to clipboard successfully!');
-            }, function() {
-                console.error('Unable to write to clipboard. :-(');
-            });
+                clipboard.writeText(newText.value)
         }
           }
     const handlecountClick = ()=>{
