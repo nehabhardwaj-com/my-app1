@@ -65,7 +65,7 @@ export default function TextForm(props) {
   
     const handleOnChange = (event)=>{
       // console.log("onchange");
-      setwordCount(text.split(" ").length)
+      setwordCount(text.split(" ").filter((element)=>{return element.length !==0}).length)
       setcharacter(text.length)
       setText(event.target.value)
       }

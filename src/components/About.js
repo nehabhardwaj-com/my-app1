@@ -67,7 +67,6 @@ export default function About(props) {
     </div>
   </div>
 </div>
-<div className="container">
-<button className="btn btn-primary my-3" onClick={handledark} >{Color}</button> </div>   </div>
+</div>
   )
 }
